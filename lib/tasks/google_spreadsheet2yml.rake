@@ -17,15 +17,20 @@ namespace :gs2yml do
       exit
     end
 
-    login           = config['google_user_id']                # Getting the login information
-    password        = config['google_password']               # getting password information
-    spreedsheet_key = config['google_spreedsheet_to_process'] # getting spreedsheet id
+    # login           = config['google_user_id']                # Getting the login information
+    # password        = config['google_password']               # getting password information
+    # spreedsheet_key = config['google_spreedsheet_to_process'] # getting spreedsheet id
 
-    session = GoogleSpreadsheet.login(login, password)
-    puts "connected..."
-    spreadsheet = session.spreadsheet_by_key(spreedsheet_key)
-    puts "got spreadsheet..."
-    ws = spreadsheet.worksheets[0] # getting the first worksheet 
+    spreadsheet_key = "0AuAPLoiLrPKVdHlnamp5aTBuOER4dDFxY3k3aVVCVlE"
+    spreadsheet_url = "https://docs.google.com/spreadsheet/ccc?key=0AuAPLoiLrPKVdHlnamp5aTBuOER4dDFxY3k3aVVCVlE&usp=sharing"
+
+    session = GoogleSpreadsheet.new
+    spreadsheet = session.get(spreadsheet_url)
+    ws = spreadsheet.worksheets[0] # getting the first worksheet
+    # puts "connected..."
+    # spreadsheet = session.spreadsheet_by_key(spreedsheet_key)
+    # puts "got spreadsheet..."
+    # ws = spreadsheet.worksheets[0] # getting the first worksheet
     puts "got worksheet..."
     languages = {}
 
